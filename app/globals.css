@@ -32,3 +32,6 @@ h2 { margin-top:1.4em; }
 .diet-veg { background:rgba(46,160,67,.18); }
 .diet-egg { background:rgba(224,170,0,.2); }
 .diet-non-veg { background:rgba(200,60,60,.18); }
+.emerg { background:#b3261e; color:#fff; text-align:center; font-size:.85rem; padding:6px 12px; }
+.alert-red { background:rgba(211,51,51,.12); border-left-color:#d33; }
+.tiers { display:grid; gap:0; }

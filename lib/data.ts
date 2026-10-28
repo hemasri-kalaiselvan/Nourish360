@@ -1,3 +1,4 @@
+import { SYMPTOMS } from "./symptoms";
 import { EXTRA_ORGANS, EXTRA_CONDITIONS, EXTRA_HABITS } from "./health";
 import { FOODS, NUTRIENTS } from "./foods";
 // All content here is DRAFT educational text. It must be reviewed by a
@@ -8,6 +9,7 @@ export type Topic = {
   title: string;
   summary: string;
   tags?: string[];
+  seeDoctor?: string[];
   category?: string;
   diet?: "veg" | "egg" | "non-veg";
   allergens?: string[];
@@ -123,32 +125,7 @@ export const DATA: Record<string, Topic[]> = {
     },
   ],
 
-  symptoms: [
-    {
-      slug: "fatigue",
-      title: "Persistent tiredness",
-      summary: "Common and often has everyday causes, but ongoing tiredness deserves a check-up.",
-      tags: ["tired", "weakness", "anaemia", "sleep"],
-      sections: [
-        { heading: "Possible everyday contributors", points: ["Poor sleep, stress, too little activity, skipped meals.", "Low iron or other nutrient deficiencies, thyroid problems, diabetes and many other conditions can also cause tiredness. Only a clinician can tell which applies."] },
-        { heading: "What you can do", points: ["Keep a regular sleep routine and eat regular balanced meals.", "See a doctor if tiredness lasts more than a couple of weeks or affects daily life."] },
-      ],
-      redFlags: ["Tiredness with chest pain, severe breathlessness, fainting, black stools or heavy bleeding: seek urgent care."],
-      sources: ["WHO", "NHS symptom pages (general reference)"],
-    },
-    {
-      slug: "heartburn",
-      title: "Heartburn / acidity",
-      summary: "Burning feeling in the chest or upper stomach, often after meals.",
-      tags: ["acidity", "reflux", "gastric", "stomach"],
-      sections: [
-        { heading: "What may help", points: ["Smaller meals, avoiding lying down soon after eating, limiting very spicy, fried or large meals if they trigger it.", "Avoid tobacco and limit alcohol."] },
-        { heading: "See a doctor if", points: ["It happens frequently, lasts weeks, or you have difficulty swallowing or unexplained weight loss."] },
-      ],
-      redFlags: ["Chest pain with sweating, breathlessness or pain spreading to arm or jaw can be a heart emergency: call emergency services. Vomiting blood or black stools: urgent care."],
-      sources: ["NHS symptom pages (general reference)"],
-    },
-  ],
+  symptoms: SYMPTOMS,
 
   wellness: [
     {

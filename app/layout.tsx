@@ -12,6 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
+        <div className="emerg">Medical emergency? Call <strong>112</strong> (India) now. This site is educational and cannot diagnose or treat.</div>
         <header className="top">
           <div className="wrap bar">
             <Link href="/" className="brand">Nourish<span>360</span></Link>
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             treatment. Content is in draft and awaiting review by qualified professionals. Always ask a doctor or
             registered dietitian about your own health. In an emergency, call your local emergency number (India: 112).
           </p>
+          <p><Link href="/about/">About, safety &amp; privacy</Link></p>
         </footer>
       </body>
     </html>

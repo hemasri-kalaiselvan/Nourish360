@@ -11,6 +11,7 @@ export function generateStaticParams() {
 export default function TopicPage({ params }: { params: { section: string; slug: string } }) {
   const topic = getTopic(params.section, params.slug);
   if (!topic) notFound();
+  const isSymptom = params.section === "symptoms";
   return (
     <article>
       <p><Link href={`/${params.section}/`}>← {SECTIONS[params.section].title}</Link></p>
@@ -21,16 +22,27 @@ export default function TopicPage({ params }: { params: { section: string; slug:
       </p>
       <p className="lead">{topic.summary}</p>
 
-      {topic.allergens && topic.allergens.length > 0 && (
-        <div className="alert">
-          <strong>Allergen note:</strong> contains or may contain {topic.allergens.join(", ")}.
-        </div>
+      {isSymptom && (
+        <p className="muted">Educational information for adults, not a diagnosis. For children, ask a paediatrician.</p>
       )}
 
       {topic.redFlags && (
-        <div className="alert">
-          <strong>Get medical help urgently if:</strong>
+        <div className="alert alert-red">
+          <strong>{isSymptom ? "Emergency: call 112 or go to hospital now if:" : "Get medical help urgently if:"}</strong>
           <ul>{topic.redFlags.map((r) => <li key={r}>{r}</li>)}</ul>
+        </div>
+      )}
+
+      {topic.seeDoctor && (
+        <div className="alert">
+          <strong>See a doctor soon if:</strong>
+          <ul>{topic.seeDoctor.map((r) => <li key={r}>{r}</li>)}</ul>
+        </div>
+      )}
+
+      {topic.allergens && topic.allergens.length > 0 && (
+        <div className="alert">
+          <strong>Allergen note:</strong> contains or may contain {topic.allergens.join(", ")}.
         </div>
       )}
 
