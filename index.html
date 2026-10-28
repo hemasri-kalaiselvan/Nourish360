@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Nourish360: food, health, and everyday wellness guidance.">
+  <title>Nourish360 — Eat Smart. Move Well. Live Better.</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand"><span class="brand-mark">N</span><div><strong>Nourish360</strong><small>Eat Smart. Move Well. Live Better.</small></div></div>
+    <a class="header-link" href="#about">About</a>
+  </header>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">YOUR EVERYDAY WELLNESS COMPANION</p>
+      <h1>Small choices.<br><span>Better wellbeing.</span></h1>
+      <p class="hero-copy">Explore foods, understand health topics, and discover practical habits that fit everyday life in South India.</p>
+      <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search foods, organs or health topics…" aria-label="Search topics"></label>
+      <div class="quick-tags"><button data-filter="all">All topics</button><button data-filter="food">Food</button><button data-filter="health">Health</button><button data-filter="wellness">Wellness</button></div>
+    </section>
+    <section class="section" aria-labelledby="explore-title">
+      <div class="section-heading"><div><p class="eyebrow">EXPLORE NOURISH360</p><h2 id="explore-title">What would you like to learn?</h2></div><span class="count" id="count">8 topics</span></div>
+      <div class="cards" id="cards">
+        <article class="card" data-category="food"><div class="icon mint">🥗</div><p class="card-label">FOOD</p><h3>Food Explorer</h3><p>Explore vegetables, fruits, grains, pulses, nuts, seeds and everyday meals.</p><button class="text-button" data-topic="food-explorer">Explore topic →</button></article>
+        <article class="card" data-category="health"><div class="icon peach">🫀</div><p class="card-label">ORGANS</p><h3>Organ-Based Nutrition</h3><p>Learn about nutrition in relation to the liver, heart, kidneys, gut and more.</p><button class="text-button" data-topic="organ-nutrition">Explore topic →</button></article>
+        <article class="card" data-category="health"><div class="icon lilac">🩺</div><p class="card-label">HEALTH</p><h3>Health Conditions</h3><p>Read general, evidence-aware information and questions to discuss with a clinician.</p><button class="text-button" data-topic="conditions">Explore topic →</button></article>
+        <article class="card" data-category="health"><div class="icon peach">⚖️</div><p class="card-label">FOOD HABITS</p><h3>Food Habits &amp; Health Risks</h3><p>Understand how excess intake and overall eating patterns may affect health.</p><button class="text-button" data-topic="food-risks">Explore topic →</button></article>
+        <article class="card" data-category="health"><div class="icon mint">🔎</div><p class="card-label">SYMPTOMS</p><h3>Symptoms &amp; Guidance</h3><p>Learn possible explanations and when to seek professional or urgent care.</p><button class="text-button" data-topic="symptoms">Explore topic →</button></article>
+        <article class="card" data-category="food"><div class="icon gold">🌾</div><p class="card-label">NUTRIENTS</p><h3>Nutrients &amp; Alternatives</h3><p>Understand nutrients, food sources, substitutions, allergies and dietary limits.</p><button class="text-button" data-topic="nutrients">Explore topic →</button></article>
+        <article class="card" data-category="wellness"><div class="icon lilac">🧘</div><p class="card-label">WELLNESS</p><h3>Exercise, Yoga &amp; Meditation</h3><p>Explore practical movement and relaxation ideas for everyday wellbeing.</p><button class="text-button" data-topic="wellness">Explore topic →</button></article>
+        <article class="card" data-category="wellness"><div class="icon gold">🌞</div><p class="card-label">MINDSET</p><h3>Positive Affirmations</h3><p>Find gentle prompts to support a positive routine, not replace medical care.</p><button class="text-button" data-topic="affirmations">Explore topic →</button></article>
+      </div>
+      <p class="no-results" id="no-results" hidden>No matching topics. Try another search.</p>
+    </section>
+    <section class="feature" id="food-risk">
+      <div class="feature-copy"><p class="eyebrow">FEATURED TOPIC</p><h2>Food habits &amp; liver health</h2><p>Frequent excess intake of energy-dense foods high in added sugar or saturated fat can make metabolic health harder to manage for some people. Overall diet, portions, activity, and individual health factors all matter.</p><p>Fatty liver can have several causes. Its stage and risks need to be assessed by a qualified healthcare professional.</p><a class="feature-link" href="#disclaimer">Read the health note ↓</a></div>
+      <div class="feature-art" aria-hidden="true"><div class="circle circle-one"></div><div class="circle circle-two"></div><div class="food-emoji">🥑</div><div class="leaf">✦</div></div>
+    </section>
+    <section class="notice" id="disclaimer"><strong>Health information notice</strong><p>Nourish360 is for general education, not diagnosis or personalised medical treatment. Do not assume that one food alone caused or will cure a condition. If you have a diagnosed condition, discuss diet changes and follow-up with your healthcare professional. Seek urgent care for emergency symptoms.</p></section>
+    <section class="about" id="about"><h2>Wellness that fits real life.</h2><p>Our initial focus is South Indian foods and everyday routines, with room to expand to other regions.</p></section>
+  </main>
+  <footer><span>© Nourish360</span><span>Learn · Choose · Thrive</span></footer>
+  <dialog id="topic-dialog"><button class="dialog-close" id="close-dialog" aria-label="Close">×</button><p class="eyebrow" id="dialog-kicker">TOPIC</p><h2 id="dialog-title"></h2><p id="dialog-body"></p><p class="dialog-note">This starter uses sample educational text only. Detailed medical content must be sourced and reviewed before publication.</p></dialog>
+  <script src="app.js"></script>
+</body>
+</html>
