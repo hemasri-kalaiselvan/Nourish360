@@ -1,3 +1,4 @@
+import { EXTRA_ORGANS, EXTRA_CONDITIONS, EXTRA_HABITS } from "./health";
 import { FOODS, NUTRIENTS } from "./foods";
 // All content here is DRAFT educational text. It must be reviewed by a
 // registered dietitian / doctor before public launch (see README).
@@ -184,6 +185,10 @@ export const DATA: Record<string, Topic[]> = {
     },
   ],
 };
+
+DATA.organs.push(...EXTRA_ORGANS);
+DATA.conditions.push(...EXTRA_CONDITIONS);
+DATA.habits.push(...EXTRA_HABITS);
 
 export function getTopic(section: string, slug: string) {
   return DATA[section]?.find((t) => t.slug === slug);
