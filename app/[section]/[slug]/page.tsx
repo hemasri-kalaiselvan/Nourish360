@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DATA, SECTIONS, getTopic } from "@/lib/data";
 
+const DIET: Record<string, string> = { veg: "Vegetarian", egg: "Contains egg", "non-veg": "Non-vegetarian" };
+
 export function generateStaticParams() {
   return Object.entries(DATA).flatMap(([section, topics]) => topics.map((t) => ({ section, slug: t.slug })));
 }
@@ -13,7 +15,17 @@ export default function TopicPage({ params }: { params: { section: string; slug:
     <article>
       <p><Link href={`/${params.section}/`}>← {SECTIONS[params.section].title}</Link></p>
       <h1>{topic.title}</h1>
+      <p>
+        {topic.diet && <span className={"chip diet-" + topic.diet}>{DIET[topic.diet]}</span>}
+        {topic.category && <span className="chip">{topic.category}</span>}
+      </p>
       <p className="lead">{topic.summary}</p>
+
+      {topic.allergens && topic.allergens.length > 0 && (
+        <div className="alert">
+          <strong>Allergen note:</strong> contains or may contain {topic.allergens.join(", ")}.
+        </div>
+      )}
 
       {topic.redFlags && (
         <div className="alert">

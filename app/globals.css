@@ -26,3 +26,9 @@ nav { display:flex; flex-wrap:wrap; gap:4px 14px; font-size:.95rem; }
 .meta { border-top:1px solid var(--line); margin-top:28px; font-size:.9rem; }
 .foot { border-top:1px solid var(--line); margin-top:40px; padding-top:16px; padding-bottom:30px; font-size:.85rem; color:var(--muted); }
 h2 { margin-top:1.4em; }
+.chips { display:flex; flex-wrap:wrap; gap:6px; margin:10px 0; }
+.chip-btn { border:1px solid var(--line); background:transparent; color:var(--ink); padding:5px 12px; border-radius:99px; font-size:.85rem; cursor:pointer; }
+.chip-btn.on { background:var(--green); border-color:var(--green); color:#fff; }
+.diet-veg { background:rgba(46,160,67,.18); }
+.diet-egg { background:rgba(224,170,0,.2); }
+.diet-non-veg { background:rgba(200,60,60,.18); }

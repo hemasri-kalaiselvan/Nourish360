@@ -5,6 +5,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Nourish360 — Eat Smart. Move Well. Live Better.",
   description: "Educational information on food, nutrition and wellness, starting with South Indian foods.",
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/" className="brand">Nourish<span>360</span></Link>
             <nav>
               <Link href="/foods/">Foods</Link>
+              <Link href="/nutrients/">Nutrients</Link>
               <Link href="/habits/">Habits</Link>
               <Link href="/organs/">Organs</Link>
               <Link href="/conditions/">Conditions</Link>

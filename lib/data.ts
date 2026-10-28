@@ -1,3 +1,4 @@
+import { FOODS, NUTRIENTS } from "./foods";
 // All content here is DRAFT educational text. It must be reviewed by a
 // registered dietitian / doctor before public launch (see README).
 
@@ -6,6 +7,9 @@ export type Topic = {
   title: string;
   summary: string;
   tags?: string[];
+  category?: string;
+  diet?: "veg" | "egg" | "non-veg";
+  allergens?: string[];
   sections: { heading: string; points: string[] }[];
   redFlags?: string[];
   related?: { section: string; slug: string }[];
@@ -14,6 +18,7 @@ export type Topic = {
 
 export const SECTIONS: Record<string, { title: string; blurb: string; icon: string }> = {
   foods: { title: "Food Explorer", blurb: "South Indian foods, nutrients and healthier swaps.", icon: "🍛" },
+  nutrients: { title: "Nutrients", blurb: "Plain-language guide to key nutrients and where to find them.", icon: "🥬" },
   habits: { title: "Food Habits & Risks", blurb: "How regular eating patterns relate to health.", icon: "⚖️" },
   organs: { title: "Organ Nutrition", blurb: "Everyday food guidance for liver, heart, kidneys, gut and more.", icon: "🫀" },
   conditions: { title: "Health Conditions", blurb: "General information and dietary patterns. Not treatment.", icon: "📋" },
@@ -27,80 +32,8 @@ const GENERAL_SOURCES = [
 ];
 
 export const DATA: Record<string, Topic[]> = {
-  foods: [
-    {
-      slug: "idli",
-      title: "Idli",
-      summary: "Steamed fermented rice-and-urad cake. Light, low in fat, a common breakfast across Tamil Nadu.",
-      tags: ["vegetarian", "breakfast", "fermented", "rice", "urad dal"],
-      sections: [
-        { heading: "Good to know", points: ["Steamed rather than fried, so it is usually low in added fat.", "Provides mainly carbohydrate with some protein from urad dal."] },
-        { heading: "Make it more balanced", points: ["Pair with sambar (pulses and vegetables) to add protein and fibre.", "Go easy on coconut chutney portions and on ghee or oil podi if you are watching calories or fat.", "Idlis made with millets or added vegetables add variety."] },
-        { heading: "Consider", points: ["People managing diabetes may need to watch portion size and pairing; a dietitian can advise."] },
-      ],
-      related: [{ section: "foods", slug: "sambar" }, { section: "foods", slug: "ragi" }],
-      sources: GENERAL_SOURCES,
-    },
-    {
-      slug: "ragi",
-      title: "Ragi (finger millet)",
-      summary: "A traditional millet used in kali, dosa, porridge and malt. Source of fibre and calcium.",
-      tags: ["vegetarian", "millet", "grain", "calcium", "fibre"],
-      sections: [
-        { heading: "Nutrients", points: ["Provides fibre, and more calcium than most other cereals.", "Contains iron; eating it with a vitamin C food (lemon, amla) may help absorption."] },
-        { heading: "Ways to eat", points: ["Ragi dosa, ragi kali/mudde, ragi porridge (unsweetened or lightly sweetened)."] },
-        { heading: "Consider", points: ["Introduce gradually if you are not used to high-fibre foods.", "People on kidney-related restrictions should ask their clinician about portions."] },
-      ],
-      related: [{ section: "foods", slug: "idli" }],
-      sources: GENERAL_SOURCES,
-    },
-    {
-      slug: "sambar",
-      title: "Sambar",
-      summary: "Lentil and vegetable stew. A practical way to add pulses and vegetables to a meal.",
-      tags: ["vegetarian", "pulses", "vegetables", "toor dal"],
-      sections: [
-        { heading: "Good to know", points: ["Toor dal gives protein and fibre; vegetables add vitamins and fibre."] },
-        { heading: "Healthier choices", points: ["Use more vegetables and less oil or coconut if you want a lighter version.", "Watch salt, especially when using ready-made sambar powder or pickles on the side."] },
-      ],
-      related: [{ section: "foods", slug: "idli" }],
-      sources: GENERAL_SOURCES,
-    },
-    {
-      slug: "curd",
-      title: "Curd (yogurt)",
-      summary: "Fermented milk product commonly eaten with meals. Provides protein and calcium.",
-      tags: ["vegetarian", "dairy", "calcium", "protein"],
-      sections: [
-        { heading: "Good to know", points: ["Provides protein, calcium and, in some products, live cultures.", "Plain curd is generally a better choice than sweetened or flavoured versions."] },
-        { heading: "Consider", points: ["Lactose intolerance or dairy allergy: ask a professional about alternatives.", "Choose low-fat versions if advised to limit saturated fat."] },
-      ],
-      sources: GENERAL_SOURCES,
-    },
-    {
-      slug: "drumstick-leaves",
-      title: "Drumstick leaves (murungai keerai)",
-      summary: "Leafy green widely used in Tamil Nadu kitchens, rich in vitamins and minerals.",
-      tags: ["vegetarian", "leafy greens", "iron", "vitamin A"],
-      sections: [
-        { heading: "Good to know", points: ["Leafy greens add fibre, folate, vitamin A and minerals to everyday meals.", "Eating a variety of greens is more useful than relying on one food."] },
-        { heading: "Be careful", points: ["Do not treat it as a cure for any disease.", "Concentrated leaf powders and supplements: check with a clinician first, especially in pregnancy or when on medicines."] },
-      ],
-      sources: GENERAL_SOURCES,
-    },
-    {
-      slug: "murukku-fried-snacks",
-      title: "Murukku and other deep-fried snacks",
-      summary: "Tasty and traditional, but energy-dense. Best thought of as an occasional food.",
-      tags: ["vegetarian", "snack", "fried", "high fat", "high salt"],
-      sections: [
-        { heading: "Good to know", points: ["Deep-fried snacks are high in calories and often in salt; reused frying oil is best avoided.", "Packaged versions can add up quickly because they are easy to eat in large amounts."] },
-        { heading: "Healthier swaps", points: ["Roasted channa, sundal (boiled pulses), roasted makhana, fruit or a small handful of nuts.", "If you enjoy murukku, keep a small portion and eat it slowly with tea rather than from the packet."] },
-      ],
-      related: [{ section: "habits", slug: "frequent-fried-and-sweet-foods" }],
-      sources: GENERAL_SOURCES,
-    },
-  ],
+  foods: FOODS,
+  nutrients: NUTRIENTS,
 
   habits: [
     {
@@ -262,6 +195,6 @@ export const ALL_ITEMS = Object.entries(DATA).flatMap(([section, topics]) =>
     slug: t.slug,
     title: t.title,
     summary: t.summary,
-    haystack: [t.title, t.summary, ...(t.tags ?? [])].join(" ").toLowerCase(),
+    haystack: [t.title, t.summary, ...(t.tags ?? []), t.category ?? ""].join(" ").toLowerCase(),
   }))
 );
