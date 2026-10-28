@@ -26,9 +26,16 @@ export default function TopicPage({ params }: { params: { section: string; slug:
         <p className="muted">Educational information for adults, not a diagnosis. For children, ask a paediatrician.</p>
       )}
 
+      {topic.checkFirst && (
+        <div className="alert">
+          <strong>Check with your doctor first if:</strong>
+          <ul>{topic.checkFirst.map((r) => <li key={r}>{r}</li>)}</ul>
+        </div>
+      )}
+
       {topic.redFlags && (
         <div className="alert alert-red">
-          <strong>{isSymptom ? "Emergency: call 112 or go to hospital now if:" : "Get medical help urgently if:"}</strong>
+          <strong>{isSymptom ? "Emergency: call 112 or go to hospital now if:" : params.section === "wellness" ? "Stop and get medical help if:" : "Get medical help urgently if:"}</strong>
           <ul>{topic.redFlags.map((r) => <li key={r}>{r}</li>)}</ul>
         </div>
       )}

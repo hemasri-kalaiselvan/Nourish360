@@ -1,6 +1,7 @@
+import { WELLNESS } from "./wellness";
 import { SYMPTOMS } from "./symptoms";
 import { EXTRA_ORGANS, EXTRA_CONDITIONS, EXTRA_HABITS } from "./health";
-import { FOODS, NUTRIENTS } from "./foods";
+import { FOODS, NUTRIENTS, MORE_FOODS } from "./foods";
 // All content here is DRAFT educational text. It must be reviewed by a
 // registered dietitian / doctor before public launch (see README).
 
@@ -10,6 +11,7 @@ export type Topic = {
   summary: string;
   tags?: string[];
   seeDoctor?: string[];
+  checkFirst?: string[];
   category?: string;
   diet?: "veg" | "egg" | "non-veg";
   allergens?: string[];
@@ -127,42 +129,10 @@ export const DATA: Record<string, Topic[]> = {
 
   symptoms: SYMPTOMS,
 
-  wellness: [
-    {
-      slug: "daily-walking",
-      title: "Daily walking",
-      summary: "A simple, low-cost way to be more active.",
-      tags: ["exercise", "walking", "activity"],
-      sections: [
-        { heading: "General guidance", points: ["Adults are generally advised to aim for around 150 minutes a week of moderate activity; start with what you can do and build up gradually.", "Short walks after meals are an easy habit to start."] },
-        { heading: "Cautions", points: ["If you have heart disease, joint problems, are pregnant or have not been active for a long time, check with your doctor first.", "Stop and seek care if you get chest pain, severe breathlessness or dizziness."] },
-      ],
-      sources: ["WHO physical activity guidelines"],
-    },
-    {
-      slug: "simple-breathing-meditation",
-      title: "Simple breathing meditation",
-      summary: "A few quiet minutes of slow breathing can help with relaxation and stress.",
-      tags: ["meditation", "stress", "breathing", "yoga"],
-      sections: [
-        { heading: "Try this (5 minutes)", points: ["Sit comfortably with your back supported.", "Breathe in gently through the nose for about 4 counts and out for about 6.", "When your mind wanders, notice it and return to the breath."] },
-        { heading: "Important", points: ["This is a relaxation practice, not a treatment for any disease. If you feel persistently low, anxious or unable to cope, please talk to a doctor or counsellor."] },
-      ],
-      sources: ["General wellness practice; clinician review pending"],
-    },
-    {
-      slug: "daily-affirmation",
-      title: "Daily affirmation",
-      summary: "Kind, realistic self-talk can support motivation for healthy habits.",
-      tags: ["affirmation", "motivation", "mind"],
-      sections: [
-        { heading: "Examples", points: ["“I am making small choices that look after my health.”", "“Progress matters more than perfection.”"] },
-      ],
-      sources: ["General wellness practice"],
-    },
-  ],
+  wellness: WELLNESS,
 };
 
+DATA.foods.push(...MORE_FOODS);
 DATA.organs.push(...EXTRA_ORGANS);
 DATA.conditions.push(...EXTRA_CONDITIONS);
 DATA.habits.push(...EXTRA_HABITS);
