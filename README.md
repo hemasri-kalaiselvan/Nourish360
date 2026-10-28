@@ -1,27 +1,23 @@
-# Nourish360 — lightweight starter
+# Nourish360 — Eat Smart. Move Well. Live Better.
 
-**Tagline:** Eat Smart. Move Well. Live Better.
+Educational food and wellness app (Next.js + TypeScript), exported as a static site and deployed to GitHub Pages.
 
-This is a lightweight, responsive first version designed to be hosted as a static website. It uses plain HTML, CSS, and JavaScript, so there is no local installation, package manager, or build step.
+## Run in Codespaces
+```
+npm install
+npm run dev
+```
+Open the forwarded port 3000.
 
-## Files
-- `index.html` — page structure and sample topic cards
-- `styles.css` — responsive design for phone and desktop
-- `app.js` — search, category filters, and topic dialogs
+## Deploy (GitHub Pages, free)
+1. GitHub Pages on the Free plan needs a **public** repository (Settings → General → Danger Zone → Change visibility).
+2. Settings → Pages → Build and deployment → Source: **GitHub Actions**.
+3. Push to `main`. The workflow in `.github/workflows/deploy.yml` builds and publishes.
+4. Site URL: `https://<your-username>.github.io/Nourish360/`
 
-## Upload to GitHub
-1. Open the private `Nourish360` repository.
-2. Choose **Add file → Upload files**.
-3. Upload `index.html`, `styles.css`, `app.js`, and `README.md` from this extracted folder.
-4. Commit the changes to `main`.
+## Adding content
+Edit `lib/data.ts`. Every topic has summary, sections, red flags (where relevant) and sources.
+All health content is DRAFT until a qualified professional reviews it.
 
-Upload the four files themselves to the repository root. Do not upload the ZIP as the only file.
-
-## Preview/deployment
-This starter does not require `npm install` or Codespaces. To publish it, enable GitHub Pages in the repository settings if available for your account/repository, or use a compatible static hosting provider connected to the repository. A published site is separate from repository source access.
-
-## Medical content safeguards
-The included text is sample educational content only. It does not diagnose. Do not claim that one food alone causes or cures fatty liver, hepatitis, cirrhosis, or cancer. Add sourced, dated, professionally reviewed health information before public launch.
-
-## Later development
-Supabase can be added when the first static version is stable. Never commit API keys, passwords, or Supabase service-role keys. Check current free-tier limits before using any service.
+## Safety
+No secrets in the repo. Content is educational, not diagnostic. Keep red-flag advice clinician-reviewed.

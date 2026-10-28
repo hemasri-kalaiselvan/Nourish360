@@ -1,0 +1,267 @@
+// All content here is DRAFT educational text. It must be reviewed by a
+// registered dietitian / doctor before public launch (see README).
+
+export type Topic = {
+  slug: string;
+  title: string;
+  summary: string;
+  tags?: string[];
+  sections: { heading: string; points: string[] }[];
+  redFlags?: string[];
+  related?: { section: string; slug: string }[];
+  sources: string[];
+};
+
+export const SECTIONS: Record<string, { title: string; blurb: string; icon: string }> = {
+  foods: { title: "Food Explorer", blurb: "South Indian foods, nutrients and healthier swaps.", icon: "🍛" },
+  habits: { title: "Food Habits & Risks", blurb: "How regular eating patterns relate to health.", icon: "⚖️" },
+  organs: { title: "Organ Nutrition", blurb: "Everyday food guidance for liver, heart, kidneys, gut and more.", icon: "🫀" },
+  conditions: { title: "Health Conditions", blurb: "General information and dietary patterns. Not treatment.", icon: "📋" },
+  symptoms: { title: "Symptoms", blurb: "When to wait, when to see a doctor, when to go to emergency.", icon: "🩺" },
+  wellness: { title: "Move & Mind", blurb: "Exercise, yoga, meditation and affirmations.", icon: "🧘" },
+};
+
+const GENERAL_SOURCES = [
+  "ICMR-NIN Dietary Guidelines for Indians (2024)",
+  "WHO healthy diet fact sheet",
+];
+
+export const DATA: Record<string, Topic[]> = {
+  foods: [
+    {
+      slug: "idli",
+      title: "Idli",
+      summary: "Steamed fermented rice-and-urad cake. Light, low in fat, a common breakfast across Tamil Nadu.",
+      tags: ["vegetarian", "breakfast", "fermented", "rice", "urad dal"],
+      sections: [
+        { heading: "Good to know", points: ["Steamed rather than fried, so it is usually low in added fat.", "Provides mainly carbohydrate with some protein from urad dal."] },
+        { heading: "Make it more balanced", points: ["Pair with sambar (pulses and vegetables) to add protein and fibre.", "Go easy on coconut chutney portions and on ghee or oil podi if you are watching calories or fat.", "Idlis made with millets or added vegetables add variety."] },
+        { heading: "Consider", points: ["People managing diabetes may need to watch portion size and pairing; a dietitian can advise."] },
+      ],
+      related: [{ section: "foods", slug: "sambar" }, { section: "foods", slug: "ragi" }],
+      sources: GENERAL_SOURCES,
+    },
+    {
+      slug: "ragi",
+      title: "Ragi (finger millet)",
+      summary: "A traditional millet used in kali, dosa, porridge and malt. Source of fibre and calcium.",
+      tags: ["vegetarian", "millet", "grain", "calcium", "fibre"],
+      sections: [
+        { heading: "Nutrients", points: ["Provides fibre, and more calcium than most other cereals.", "Contains iron; eating it with a vitamin C food (lemon, amla) may help absorption."] },
+        { heading: "Ways to eat", points: ["Ragi dosa, ragi kali/mudde, ragi porridge (unsweetened or lightly sweetened)."] },
+        { heading: "Consider", points: ["Introduce gradually if you are not used to high-fibre foods.", "People on kidney-related restrictions should ask their clinician about portions."] },
+      ],
+      related: [{ section: "foods", slug: "idli" }],
+      sources: GENERAL_SOURCES,
+    },
+    {
+      slug: "sambar",
+      title: "Sambar",
+      summary: "Lentil and vegetable stew. A practical way to add pulses and vegetables to a meal.",
+      tags: ["vegetarian", "pulses", "vegetables", "toor dal"],
+      sections: [
+        { heading: "Good to know", points: ["Toor dal gives protein and fibre; vegetables add vitamins and fibre."] },
+        { heading: "Healthier choices", points: ["Use more vegetables and less oil or coconut if you want a lighter version.", "Watch salt, especially when using ready-made sambar powder or pickles on the side."] },
+      ],
+      related: [{ section: "foods", slug: "idli" }],
+      sources: GENERAL_SOURCES,
+    },
+    {
+      slug: "curd",
+      title: "Curd (yogurt)",
+      summary: "Fermented milk product commonly eaten with meals. Provides protein and calcium.",
+      tags: ["vegetarian", "dairy", "calcium", "protein"],
+      sections: [
+        { heading: "Good to know", points: ["Provides protein, calcium and, in some products, live cultures.", "Plain curd is generally a better choice than sweetened or flavoured versions."] },
+        { heading: "Consider", points: ["Lactose intolerance or dairy allergy: ask a professional about alternatives.", "Choose low-fat versions if advised to limit saturated fat."] },
+      ],
+      sources: GENERAL_SOURCES,
+    },
+    {
+      slug: "drumstick-leaves",
+      title: "Drumstick leaves (murungai keerai)",
+      summary: "Leafy green widely used in Tamil Nadu kitchens, rich in vitamins and minerals.",
+      tags: ["vegetarian", "leafy greens", "iron", "vitamin A"],
+      sections: [
+        { heading: "Good to know", points: ["Leafy greens add fibre, folate, vitamin A and minerals to everyday meals.", "Eating a variety of greens is more useful than relying on one food."] },
+        { heading: "Be careful", points: ["Do not treat it as a cure for any disease.", "Concentrated leaf powders and supplements: check with a clinician first, especially in pregnancy or when on medicines."] },
+      ],
+      sources: GENERAL_SOURCES,
+    },
+    {
+      slug: "murukku-fried-snacks",
+      title: "Murukku and other deep-fried snacks",
+      summary: "Tasty and traditional, but energy-dense. Best thought of as an occasional food.",
+      tags: ["vegetarian", "snack", "fried", "high fat", "high salt"],
+      sections: [
+        { heading: "Good to know", points: ["Deep-fried snacks are high in calories and often in salt; reused frying oil is best avoided.", "Packaged versions can add up quickly because they are easy to eat in large amounts."] },
+        { heading: "Healthier swaps", points: ["Roasted channa, sundal (boiled pulses), roasted makhana, fruit or a small handful of nuts.", "If you enjoy murukku, keep a small portion and eat it slowly with tea rather than from the packet."] },
+      ],
+      related: [{ section: "habits", slug: "frequent-fried-and-sweet-foods" }],
+      sources: GENERAL_SOURCES,
+    },
+  ],
+
+  habits: [
+    {
+      slug: "frequent-fried-and-sweet-foods",
+      title: "Frequent fried and sweet foods",
+      summary: "Regular large amounts of foods high in added sugar, saturated fat or salt can make it harder to maintain metabolic health.",
+      tags: ["sugar", "fried", "ice cream", "sweets", "fatty liver", "weight"],
+      sections: [
+        { heading: "What is known", points: ["Frequent excess calories and diets high in added sugar or saturated fat can contribute to weight gain, insulin resistance and fatty liver in some people.", "Risk depends on the whole diet, portion sizes, body weight, activity, genetics, alcohol and other factors; no single food is the sole cause of a disease."] },
+        { heading: "What helps", points: ["Make sweets and fried foods occasional rather than daily.", "Choose smaller portions, and add vegetables, pulses and fruit to meals.", "Prefer water, buttermilk or unsweetened drinks to sugary drinks."] },
+        { heading: "Healthier swaps", points: ["Ice cream → fresh fruit, plain curd with fruit.", "Fried chicken → grilled, baked or lightly pan-cooked chicken or fish; more dal and vegetables.", "Packaged sweets → a small portion of a traditional sweet, once in a while."] },
+        { heading: "Important", points: ["This page is general information. It does not say any particular food will cause or cure a condition. If you have been told you have a health condition such as fatty liver, ask your doctor or dietitian about diagnosis, monitoring and a plan for you."] },
+      ],
+      related: [{ section: "conditions", slug: "fatty-liver" }, { section: "organs", slug: "liver" }],
+      sources: GENERAL_SOURCES,
+    },
+    {
+      slug: "high-salt-intake",
+      title: "High salt intake",
+      summary: "Pickles, papads, dry fish, instant foods and restaurant food can add a lot of salt.",
+      tags: ["salt", "sodium", "blood pressure", "pickle", "papad"],
+      sections: [
+        { heading: "What is known", points: ["Diets high in salt are linked with higher blood pressure, which is a risk factor for heart disease and stroke."] },
+        { heading: "What helps", points: ["Cook with measured salt; taste before adding more at the table.", "Limit pickles, papads, salted snacks and instant noodles.", "Use lemon, pepper, curry leaves, ginger and spices for flavour."] },
+        { heading: "Important", points: ["If you have high blood pressure, heart or kidney disease, follow the salt advice given by your clinician."] },
+      ],
+      related: [{ section: "organs", slug: "heart" }],
+      sources: GENERAL_SOURCES,
+    },
+  ],
+
+  organs: [
+    {
+      slug: "liver",
+      title: "Liver",
+      summary: "Everyday eating habits that support a healthy weight and metabolic health also support liver health.",
+      tags: ["liver", "fatty liver", "alcohol", "weight"],
+      sections: [
+        { heading: "General guidance", points: ["Aim for a healthy body weight through balanced meals and regular activity.", "Limit added sugar, sugary drinks and frequent deep-fried foods.", "Eat more vegetables, pulses, whole grains and fruit.", "Alcohol harms the liver; ask your doctor about what is safe for you."] },
+        { heading: "Myths to avoid", points: ["There is no food or drink that reliably 'detoxes' the liver.", "Do not start herbal supplements without medical advice; some can harm the liver."] },
+      ],
+      related: [{ section: "conditions", slug: "fatty-liver" }],
+      redFlags: ["Yellow eyes or skin, dark urine, severe abdominal pain, vomiting blood or black stools: seek medical care urgently."],
+      sources: GENERAL_SOURCES,
+    },
+    {
+      slug: "heart",
+      title: "Heart",
+      summary: "Heart-friendly eating focuses on overall pattern: less salt, less saturated fat, more fibre and plants.",
+      tags: ["heart", "cholesterol", "blood pressure", "salt"],
+      sections: [
+        { heading: "General guidance", points: ["Reduce salt and highly processed foods.", "Choose a variety of vegetables, fruit, pulses, whole grains and nuts.", "Limit frequent deep-fried foods and large portions of red meat or fatty meats.", "Stay active and avoid tobacco."] },
+      ],
+      related: [{ section: "habits", slug: "high-salt-intake" }],
+      redFlags: ["Chest pain or pressure, pain spreading to arm or jaw, sudden breathlessness, fainting: call emergency services immediately."],
+      sources: GENERAL_SOURCES,
+    },
+  ],
+
+  conditions: [
+    {
+      slug: "fatty-liver",
+      title: "Fatty liver",
+      summary: "Extra fat stored in liver cells. Often related to metabolic health, and in some people to alcohol.",
+      tags: ["liver", "NAFLD", "MASLD", "weight", "diabetes"],
+      sections: [
+        { heading: "Overview", points: ["Fatty liver is common and often causes no symptoms.", "It has several possible contributors: excess weight, insulin resistance or diabetes, high triglycerides, alcohol, some medicines and other causes.", "It is not the same as hepatitis, cirrhosis or liver cancer. Progression is not inevitable, and risk varies by person."] },
+        { heading: "Eating and lifestyle", points: ["Gradual weight loss in people who are overweight can improve liver fat.", "Eat more vegetables, pulses, whole grains and fruit; cut back sugary drinks and frequent fried or sugary foods.", "Regular physical activity, as advised by your doctor."] },
+        { heading: "Talk to a clinician", points: ["Staging and follow-up (blood tests, scans) should be interpreted by a doctor.", "Ask about alcohol, medicines and diabetes or cholesterol checks."] },
+      ],
+      redFlags: ["Yellow eyes or skin, swelling of the belly or legs, vomiting blood, black stools or confusion: seek urgent medical care."],
+      related: [{ section: "organs", slug: "liver" }, { section: "habits", slug: "frequent-fried-and-sweet-foods" }],
+      sources: GENERAL_SOURCES,
+    },
+    {
+      slug: "type-2-diabetes",
+      title: "Type 2 diabetes",
+      summary: "A long-term condition in which blood sugar is higher than normal. Diet and activity are important parts of management.",
+      tags: ["diabetes", "blood sugar", "rice", "carbohydrate"],
+      sections: [
+        { heading: "Eating pattern", points: ["Pay attention to portion sizes of rice, tiffin items and sweets.", "Pair carbohydrate foods with vegetables, pulses or protein.", "Choose whole grains and millets where suitable, and limit sugary drinks."] },
+        { heading: "Important", points: ["Medicine, insulin and diet plans must be set by your doctor. Do not stop or change medicines because of anything you read here."] },
+      ],
+      redFlags: ["Very high thirst and urination with drowsiness, vomiting or fruity-smelling breath; or low sugar with sweating, shaking and confusion: seek urgent care."],
+      sources: GENERAL_SOURCES,
+    },
+  ],
+
+  symptoms: [
+    {
+      slug: "fatigue",
+      title: "Persistent tiredness",
+      summary: "Common and often has everyday causes, but ongoing tiredness deserves a check-up.",
+      tags: ["tired", "weakness", "anaemia", "sleep"],
+      sections: [
+        { heading: "Possible everyday contributors", points: ["Poor sleep, stress, too little activity, skipped meals.", "Low iron or other nutrient deficiencies, thyroid problems, diabetes and many other conditions can also cause tiredness. Only a clinician can tell which applies."] },
+        { heading: "What you can do", points: ["Keep a regular sleep routine and eat regular balanced meals.", "See a doctor if tiredness lasts more than a couple of weeks or affects daily life."] },
+      ],
+      redFlags: ["Tiredness with chest pain, severe breathlessness, fainting, black stools or heavy bleeding: seek urgent care."],
+      sources: ["WHO", "NHS symptom pages (general reference)"],
+    },
+    {
+      slug: "heartburn",
+      title: "Heartburn / acidity",
+      summary: "Burning feeling in the chest or upper stomach, often after meals.",
+      tags: ["acidity", "reflux", "gastric", "stomach"],
+      sections: [
+        { heading: "What may help", points: ["Smaller meals, avoiding lying down soon after eating, limiting very spicy, fried or large meals if they trigger it.", "Avoid tobacco and limit alcohol."] },
+        { heading: "See a doctor if", points: ["It happens frequently, lasts weeks, or you have difficulty swallowing or unexplained weight loss."] },
+      ],
+      redFlags: ["Chest pain with sweating, breathlessness or pain spreading to arm or jaw can be a heart emergency: call emergency services. Vomiting blood or black stools: urgent care."],
+      sources: ["NHS symptom pages (general reference)"],
+    },
+  ],
+
+  wellness: [
+    {
+      slug: "daily-walking",
+      title: "Daily walking",
+      summary: "A simple, low-cost way to be more active.",
+      tags: ["exercise", "walking", "activity"],
+      sections: [
+        { heading: "General guidance", points: ["Adults are generally advised to aim for around 150 minutes a week of moderate activity; start with what you can do and build up gradually.", "Short walks after meals are an easy habit to start."] },
+        { heading: "Cautions", points: ["If you have heart disease, joint problems, are pregnant or have not been active for a long time, check with your doctor first.", "Stop and seek care if you get chest pain, severe breathlessness or dizziness."] },
+      ],
+      sources: ["WHO physical activity guidelines"],
+    },
+    {
+      slug: "simple-breathing-meditation",
+      title: "Simple breathing meditation",
+      summary: "A few quiet minutes of slow breathing can help with relaxation and stress.",
+      tags: ["meditation", "stress", "breathing", "yoga"],
+      sections: [
+        { heading: "Try this (5 minutes)", points: ["Sit comfortably with your back supported.", "Breathe in gently through the nose for about 4 counts and out for about 6.", "When your mind wanders, notice it and return to the breath."] },
+        { heading: "Important", points: ["This is a relaxation practice, not a treatment for any disease. If you feel persistently low, anxious or unable to cope, please talk to a doctor or counsellor."] },
+      ],
+      sources: ["General wellness practice; clinician review pending"],
+    },
+    {
+      slug: "daily-affirmation",
+      title: "Daily affirmation",
+      summary: "Kind, realistic self-talk can support motivation for healthy habits.",
+      tags: ["affirmation", "motivation", "mind"],
+      sections: [
+        { heading: "Examples", points: ["“I am making small choices that look after my health.”", "“Progress matters more than perfection.”"] },
+      ],
+      sources: ["General wellness practice"],
+    },
+  ],
+};
+
+export function getTopic(section: string, slug: string) {
+  return DATA[section]?.find((t) => t.slug === slug);
+}
+
+export const ALL_ITEMS = Object.entries(DATA).flatMap(([section, topics]) =>
+  topics.map((t) => ({
+    section,
+    slug: t.slug,
+    title: t.title,
+    summary: t.summary,
+    haystack: [t.title, t.summary, ...(t.tags ?? [])].join(" ").toLowerCase(),
+  }))
+);

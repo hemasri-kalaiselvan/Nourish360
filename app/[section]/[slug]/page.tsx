@@ -1,0 +1,51 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { DATA, SECTIONS, getTopic } from "@/lib/data";
+
+export function generateStaticParams() {
+  return Object.entries(DATA).flatMap(([section, topics]) => topics.map((t) => ({ section, slug: t.slug })));
+}
+
+export default function TopicPage({ params }: { params: { section: string; slug: string } }) {
+  const topic = getTopic(params.section, params.slug);
+  if (!topic) notFound();
+  return (
+    <article>
+      <p><Link href={`/${params.section}/`}>← {SECTIONS[params.section].title}</Link></p>
+      <h1>{topic.title}</h1>
+      <p className="lead">{topic.summary}</p>
+
+      {topic.redFlags && (
+        <div className="alert">
+          <strong>Get medical help urgently if:</strong>
+          <ul>{topic.redFlags.map((r) => <li key={r}>{r}</li>)}</ul>
+        </div>
+      )}
+
+      {topic.sections.map((s) => (
+        <section key={s.heading}>
+          <h2>{s.heading}</h2>
+          <ul>{s.points.map((p) => <li key={p}>{p}</li>)}</ul>
+        </section>
+      ))}
+
+      {topic.related && (
+        <section>
+          <h2>Related</h2>
+          <p>
+            {topic.related.map((r) => {
+              const t = getTopic(r.section, r.slug);
+              return t ? <Link key={r.section + r.slug} className="chip" href={`/${r.section}/${r.slug}/`}>{t.title}</Link> : null;
+            })}
+          </p>
+        </section>
+      )}
+
+      <section className="meta">
+        <h2>Sources &amp; review</h2>
+        <ul>{topic.sources.map((s) => <li key={s}>{s}</li>)}</ul>
+        <p className="muted">Review status: <strong>draft, awaiting review by a qualified professional.</strong></p>
+      </section>
+    </article>
+  );
+}
