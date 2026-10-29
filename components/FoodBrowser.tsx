@@ -2,9 +2,9 @@
 import Link from "next/link";
 import { useState } from "react";
 
-type Item = { slug: string; title: string; summary: string; category?: string; diet?: string; tags?: string[] };
+type Item = { slug: string; title: string; summary: string; emoji: string; category?: string; diet?: string; tags?: string[] };
 
-const DIET: Record<string, string> = { veg: "Vegetarian", egg: "Contains egg", "non-veg": "Non-vegetarian" };
+const DIET: Record<string, string> = { veg: "Veg", egg: "Egg", "non-veg": "Non-veg" };
 
 export default function FoodBrowser({ items, categories }: { items: Item[]; categories: string[] }) {
   const [q, setQ] = useState("");
@@ -22,27 +22,24 @@ export default function FoodBrowser({ items, categories }: { items: Item[]; cate
 
   return (
     <div>
-      <input className="search" type="search" placeholder="Search foods (e.g. ragi, fried, protein)" aria-label="Search foods" value={q} onChange={(e) => setQ(e.target.value)} />
-      <div className="chips">
+      <input className="search" type="search" placeholder="🔍 Search foods" aria-label="Search foods" value={q} onChange={(e) => setQ(e.target.value)} />
+      <div className="chips scrollx">
         {["All", ...categories].map((c) => (
           <button key={c} type="button" className={"chip-btn" + (cat === c ? " on" : "")} onClick={() => setCat(c)}>{c}</button>
         ))}
       </div>
       <div className="chips">
-        {[["all", "Any diet"], ["veg", "Vegetarian"], ["egg", "Egg"], ["non-veg", "Non-vegetarian"]].map(([k, label]) => (
+        {[["all", "Any"], ["veg", "🟢 Veg"], ["egg", "🟡 Egg"], ["non-veg", "🔴 Non-veg"]].map(([k, label]) => (
           <button key={k} type="button" className={"chip-btn" + (diet === k ? " on" : "")} onClick={() => setDiet(k)}>{label}</button>
         ))}
       </div>
       <p className="muted">{shown.length} food{shown.length === 1 ? "" : "s"}</p>
-      <div className="grid">
+      <div className="foodgrid">
         {shown.map((t) => (
-          <Link key={t.slug} href={`/foods/${t.slug}/`} className="card">
-            <h2>{t.title}</h2>
-            <p>{t.summary}</p>
-            <p style={{ marginTop: 8 }}>
-              {t.diet && <span className={"chip diet-" + t.diet}>{DIET[t.diet]}</span>}
-              {t.category && <span className="chip">{t.category}</span>}
-            </p>
+          <Link key={t.slug} href={`/foods/${t.slug}/`} className="fcard">
+            <div className="femoji">{t.emoji}</div>
+            <div className="ftitle">{t.title}</div>
+            {t.diet && <span className={"chip diet-" + t.diet}>{DIET[t.diet]}</span>}
           </Link>
         ))}
       </div>
